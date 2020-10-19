@@ -6,6 +6,12 @@ const os = osu.os
 
 let cpuOverload = 80
 
+notifyUser({
+    title: "CPU Overload",
+    body:  `CPU Overload ${cpuOverload}%`,
+    icon: path.join(__dirname, "img", "icon.png")
+})
+
 setInterval(() =>{
     cpu.usage().then(info =>{
         document.getElementById("cpu-usage").innerText = info + "%"
@@ -48,4 +54,8 @@ function secondsToDhms(seconds){
     const m = Math.floor((seconds % (3600))/60)
     const s = Math.floor(seconds % 60)
     return `${d}d, ${h}h, ${m}m ${s}s`
+}
+
+function notifyUser(options){
+    new Notification(options.title, options)
 }
