@@ -14,7 +14,7 @@ class Store{
     }
 
     set(key, val){
-        this.data[key] = value
+        this.data[key] = val
         fs.writeFileSync(this.path, JSON.stringify(this.data))
     }
 }

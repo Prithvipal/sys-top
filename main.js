@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, remote } = require('electron')
+const { app, BrowserWindow, Menu, remote, ipcMain } = require('electron')
 const log = require('electron-log')
 const Store = require("./Store")
 
@@ -68,6 +68,11 @@ const menu = [
       ]
     : []),
 ]
+
+ipcMain.on("settings:set", (e, values)=>{
+  store.set("settings", values)
+  mainWindow.webContents.send("settings:get", store.get("settings"))
+})
 
 app.on('window-all-closed', () => {
   if (!isMac) {
