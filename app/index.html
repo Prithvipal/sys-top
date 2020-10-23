@@ -85,7 +85,21 @@
           cpuOverload,
           alertFrequency
         })
+        
+        showAlert("Setting Saved")
       })
+
+      function showAlert(msg){
+        const alert = document.getElementById("alert")
+        alert.classList.remove("hide")
+        alert.classList.add("alert")
+        alert.innerText = msg
+
+        setTimeout(()=>{
+         alert.classList.add("hide") 
+        },3000)
+
+      }
     </script>   
   </body>
 </html>
